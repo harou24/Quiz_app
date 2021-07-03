@@ -17,7 +17,7 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState<QuestionState[]>([]);
   const [questionNbr, setQuestionNbr] = useState(0);
-  const [userAnswers, setUserAnswers] = useState([]);
+  const [userAnswers, setUserAnswers] = useState<any[]>([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
 
@@ -40,7 +40,19 @@ const App = () => {
   };
 
   const checkAnswer = (event: React.MouseEvent<HTMLButtonElement>) => {
-
+    if (!gameOver) {
+      const userAnswer = event.currentTarget.value;
+      const isAnswerCorrect = questions[questionNbr].correct_answer === userAnswer;
+      if (isAnswerCorrect) setScore(prev => prev + 1);
+      const answerObject : AnswerObject = {
+        question: questions[questionNbr].question,
+        userAnswer: userAnswer,
+        correct: isAnswerCorrect,
+        correctAnswer: questions[questionNbr].correct_answer,        
+      };
+      setUserAnswers((prev) => [...prev, answerObject]);
+    
+    }
 
   }
 
