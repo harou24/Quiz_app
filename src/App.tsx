@@ -3,7 +3,7 @@ import QuestionCard from './components/QuestionCard';
 import { fetchQuizQuestions, Question } from './API';
 import { Difficulty, QuestionState } from './API'
 
-type AnswerObject = {
+export type AnswerObject = {
   question: string;
   userAnswer: string;
   correct: boolean;
@@ -57,6 +57,15 @@ const App = () => {
   }
 
   const nextQuestion = () => {
+    
+    const nextQuestion = questionNbr + 1;
+
+    if (nextQuestion === TOTAL_QUESTIONS) {
+      setGameOver(true);
+    }
+    else {
+      setQuestionNbr(nextQuestion);
+    }
 
   }
 
