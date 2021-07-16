@@ -74,14 +74,14 @@ const App = () => {
   console.log('question-> ' + questions + '\n');
   return (
     <div className="App">
-      <h1>Quiz</h1>
+      <h1>BaBa-Quiz</h1>
       {gameOver || userAnswers.length === TOTAL_QUESTIONS ?  (
         <button className="start" onClick={startQuiz}>
           Start
         </button>
       ) : null}
 
-      {!gameOver ? <p className="score">Score:</p> : null}
+      {!gameOver ? <p className="score">Score: {score}</p> : null}
       {loading ? <p>Loading Questions ...</p> : null }
       { !loading && !gameOver && (
         <QuestionCard
